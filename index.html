@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypeTestPro</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="./css/styles.css" rel="stylesheet">
+    <script type="module" src="./js/index.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-white shadow-sm p-3">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">TypeTestPro</a>
+        <div>
+          <a href="#" class="text-dark me-3">Home</a>
+          <a href="#" class="text-dark me-3">Test</a>
+          <a href="#" class="text-dark">Results</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="card p-4 shadow-sm">
+        <h3 class="text-center">Typing Test</h3>
+        <p id="text" class="text-center">
+          <span id="correct-txt"></span><span id="wrong-txt"></span><span id="default-txt"></span>
+        </p>
+        <p class="text-center fw-bold">
+          Time left: <span id="timer" class="text-dark">60</span>
+        </p>
+        <div class="text-center input-group">
+          <textarea id="user-input" class="form-control"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-4">
+      <div class="card p-4 shadow-sm">
+        <h4 class="text-center">Performance Summary</h4>
+        <div class="row text-center">
+          <div class="col-md-6">
+            <img src="./chart.png" alt="Graph" />
+          </div>
+          <div class="col-md-6">
+            <img src="./pie.png" alt="Pie Chart" />
+          </div>
+        </div>
+        <p class="text-center mt-3">Typing Speed: <strong>55 WPM</strong></p>
+        <p class="text-center">Accuracy: <strong>98%</strong></p>
+        <p class="text-center text-success">
+          Congratulations! Your performance is above average.
+        </p>
+      </div>
+    </div>
+
+    <footer class="footer mt-5 bg-light">
+      <div class="container">
+        <p>&copy; 2023 TypeTestPro. All rights reserved.</p>
+        <p>
+          <a href="#" class="text-dark me-3">Privacy Policy</a>
+          <a href="#" class="text-dark me-3">Terms of Use</a>
+          <a href="#" class="text-dark">Contact Us</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
