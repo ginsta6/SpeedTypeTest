@@ -1,0 +1,23 @@
+body {
+  background-color: #f8f9fa;
+}
+.card {
+  border-radius: 10px;
+}
+.navbar {
+  border-bottom: 1px solid #ddd;
+}
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+#correct-txt {
+    background: rgb(121, 243, 121);
+}
+
+#wrong-txt {
+    background: rgb(245, 131, 131);
+}
