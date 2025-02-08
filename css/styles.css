@@ -15,9 +15,15 @@ body {
 }
 
 #correct-txt {
-    background: rgb(121, 243, 121);
+  background: rgb(121, 243, 121);
 }
 
 #wrong-txt {
-    background: rgb(245, 131, 131);
+  background: rgb(245, 131, 131);
+}
+
+.no-select {
+  user-select: none; /* Prevent text selection */
+  pointer-events: none; /* Prevent interaction */
+  background-color: #f0f0f0; /* Optional: Gray out */
 }
