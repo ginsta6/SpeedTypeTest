@@ -10,6 +10,8 @@ export function getTextFromAPI() {
       addTextToHTML(data);
     })
     .catch((error) => console.error("Error fetching data:", error));
+  testText = "my name is aldona";
+  addTextToHTML("my name is aldona");
 }
 
 export function handleInput(input) {
@@ -27,9 +29,7 @@ export function handleInput(input) {
   highlightGreen(correct);
   highlightRed(incorrect);
   addTextToHTML(text);
-  console.log(`Test: ${testText.length} Green: ${correct.length}`);
   if (correct.length === testText.length) {
-    console.log("equal");
     stopTimer();
   }
 }
@@ -38,6 +38,17 @@ export function startTimer() {
   if (!timerID) {
     timerID = setInterval(decreaseTimer, 1000);
   }
+}
+
+export function restartTest() {
+  getTextFromAPI();
+  resetTest();
+}
+
+export function resetTest() {
+  document.getElementById("user-input").value = "";
+  handleInput("");
+  resetTimer();
 }
 
 function findSimilarityEnd(str, substring) {
@@ -70,11 +81,22 @@ function decreaseTimer() {
   if (time === 0) {
     time = 60;
     stopTimer();
+    showModal();
   }
 }
 
 function stopTimer() {
-  console.log("stopping timer");
   clearInterval(timerID);
   timerID = null;
+}
+
+function resetTimer() {
+  stopTimer();
+  time = 60;
+  document.getElementById("timer").innerText = time;
+}
+
+function showModal() {
+  const modal = new bootstrap.Modal(document.getElementById("finishModal"));
+  modal.show();
 }
