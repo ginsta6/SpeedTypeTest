@@ -1,6 +1,11 @@
+import { calculateStats } from "./statistics.js";
+
 let testText = "";
 let time = 60;
 let timerID;
+let longestCorrect = ".";
+let currentMistake = "";
+let mistakeCount = 0;
 
 export function getTextFromAPI() {
   fetch("http://metaphorpsum.com/paragraphs/1")
@@ -10,8 +15,6 @@ export function getTextFromAPI() {
       addTextToHTML(data);
     })
     .catch((error) => console.error("Error fetching data:", error));
-  testText = "my name is aldona";
-  addTextToHTML("my name is aldona");
 }
 
 export function handleInput(input) {
@@ -30,12 +33,13 @@ export function handleInput(input) {
   highlightRed(incorrect);
   addTextToHTML(text);
   if (correct.length === testText.length) {
-    stopTimer();
+    gameEnd();
   }
 }
 
 export function startTimer() {
   if (!timerID) {
+    resetCurrStats();
     timerID = setInterval(decreaseTimer, 1000);
   }
 }
@@ -49,6 +53,12 @@ export function resetTest() {
   document.getElementById("user-input").value = "";
   handleInput("");
   resetTimer();
+}
+
+function resetCurrStats() {
+  longestCorrect = ".";
+  currentMistake = "";
+  mistakeCount = 0;
 }
 
 function findSimilarityEnd(str, substring) {
@@ -68,10 +78,12 @@ function addTextToHTML(text) {
 function highlightGreen(text) {
   const para = document.getElementById("correct-txt");
   para.innerText = text;
+  logCorrect(text);
 }
 function highlightRed(text) {
   const para = document.getElementById("wrong-txt");
   para.innerText = text;
+  logMistake(text);
 }
 
 function decreaseTimer() {
@@ -79,10 +91,15 @@ function decreaseTimer() {
   time--;
   timer.innerText = time;
   if (time === 0) {
+    gameEnd();
     time = 60;
-    stopTimer();
-    showModal();
   }
+}
+
+function gameEnd() {
+  stopTimer();
+  stopInput();
+  showModal();
 }
 
 function stopTimer() {
@@ -97,6 +114,29 @@ function resetTimer() {
 }
 
 function showModal() {
+  calculateStats(testText, longestCorrect, mistakeCount, time);
   const modal = new bootstrap.Modal(document.getElementById("finishModal"));
   modal.show();
+}
+
+function logCorrect(text) {
+  longestCorrect = text && text.length > longestCorrect.length ? text : longestCorrect;
+}
+
+function logMistake(text) {
+  if (text.length > currentMistake.length) {
+    mistakeCount++;
+  }
+  currentMistake = text;
+}
+
+//this is weird, one file stops input, another allows
+function stopInput() {
+  const inputField = document.getElementById("user-input");
+  inputField.addEventListener("keydown", preventTyping);
+  inputField.classList.add("no-select");
+}
+
+export function preventTyping(event) {
+  event.preventDefault();
 }
