@@ -3,7 +3,7 @@ import { calculateStats } from "./statistics.js";
 let testText = "";
 let time = 60;
 let timerID;
-let longestCorrect = ".";
+let longestCorrect = "";
 let currentMistake = "";
 let mistakeCount = 0;
 
@@ -52,11 +52,12 @@ export function restartTest() {
 export function resetTest() {
   document.getElementById("user-input").value = "";
   handleInput("");
+  allowInput();
   resetTimer();
 }
 
 function resetCurrStats() {
-  longestCorrect = ".";
+  longestCorrect = "";
   currentMistake = "";
   mistakeCount = 0;
 }
@@ -80,6 +81,7 @@ function highlightGreen(text) {
   para.innerText = text;
   logCorrect(text);
 }
+
 function highlightRed(text) {
   const para = document.getElementById("wrong-txt");
   para.innerText = text;
@@ -130,11 +132,16 @@ function logMistake(text) {
   currentMistake = text;
 }
 
-//this is weird, one file stops input, another allows
 function stopInput() {
   const inputField = document.getElementById("user-input");
   inputField.addEventListener("keydown", preventTyping);
   inputField.classList.add("no-select");
+}
+
+function allowInput() {
+  const inputField = document.getElementById("user-input");
+  inputField.removeEventListener("keydown", preventTyping);
+  inputField.classList.remove("no-select");
 }
 
 export function preventTyping(event) {
