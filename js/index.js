@@ -4,12 +4,10 @@ import {
   startTimer,
   restartTest,
   resetTest,
-  preventTyping,
 } from "./typing.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   getTextFromAPI();
-  handleModal();
 
   const input = document.getElementById("user-input");
 
@@ -28,16 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("restart-btn").addEventListener("click", restartTest);
   document.getElementById("reset-btn").addEventListener("click", resetTest);
+  document.getElementById("modal-restart-btn").addEventListener("click", restartTest);
+  document.getElementById("modal-reset-btn").addEventListener("click", resetTest);
 });
-
-//this is weird, one file stops input, another allows
-function handleModal() {
-  const finishModal = document.getElementById("finishModal");
-  const inputField = document.getElementById("user-input");
-
-  // Detect when the modal is hidden
-  finishModal.addEventListener("hidden.bs.modal", () => {
-    inputField.removeEventListener("keydown", preventTyping);
-    inputField.classList.remove("no-select");
-  });
-}
