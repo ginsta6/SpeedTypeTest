@@ -1,14 +1,14 @@
 import { calculateStats } from "./statistics.js";
 
 let testText = "";
-let time = 60;
+let time = 5;
 let timerID;
 let longestCorrect = "";
 let currentMistake = "";
 let mistakeCount = 0;
 
 export function getTextFromAPI() {
-  fetch("http://metaphorpsum.com/paragraphs/1")
+  return fetch("http://metaphorpsum.com/paragraphs/1")
     .then((response) => response.text())
     .then((data) => {
       testText = data;
@@ -32,6 +32,7 @@ export function handleInput(input) {
   highlightGreen(correct);
   highlightRed(incorrect);
   addTextToHTML(text);
+  underlineCurrWord();
   if (correct.length === testText.length) {
     gameEnd();
   }
@@ -45,12 +46,15 @@ export function startTimer() {
 }
 
 export function restartTest() {
-  getTextFromAPI();
-  resetTest();
+  getTextFromAPI().then(() => {
+    resetTest();
+  });
 }
 
 export function resetTest() {
-  document.getElementById("user-input").value = "";
+  const input = document.getElementById("user-input");
+  input.value = "";
+  input.focus();
   handleInput("");
   allowInput();
   resetTimer();
@@ -94,14 +98,14 @@ function decreaseTimer() {
   timer.innerText = time;
   if (time === 0) {
     gameEnd();
-    time = 60;
+    time = 5;
   }
 }
 
 function gameEnd() {
   stopTimer();
   stopInput();
-  showModal();
+  calculateStats(testText, longestCorrect, mistakeCount, time);
 }
 
 function stopTimer() {
@@ -111,14 +115,8 @@ function stopTimer() {
 
 function resetTimer() {
   stopTimer();
-  time = 60;
+  time = 5;
   document.getElementById("timer").innerText = time;
-}
-
-function showModal() {
-  calculateStats(testText, longestCorrect, mistakeCount, time);
-  const modal = new bootstrap.Modal(document.getElementById("finishModal"));
-  modal.show();
 }
 
 function logCorrect(text) {
@@ -144,6 +142,42 @@ function allowInput() {
   inputField.classList.remove("no-select");
 }
 
-export function preventTyping(event) {
+function preventTyping(event) {
   event.preventDefault();
+}
+
+function getCurrWord() {
+  const green = document.getElementById("correct-txt").innerText;
+  let index = 0;
+  if (green.length !== 0) {
+    index = green.length - 1;
+  }
+
+  while (index > 0 && /[ ,.?!;:]/.test(testText[index])) {
+    index++;
+  }
+
+  const regex = /\b\w+(?:'\w+)?\b/g;
+  let match;
+
+  while ((match = regex.exec(testText)) !== null) {
+    let start = match.index;
+    let end = start + match[0].length;
+
+    if (index >= start && index < end) {
+      return match[0]; // Return the full word
+    }
+  }
+
+  return null; // No word found at the given index
+}
+
+function underlineCurrWord() {
+  const word = getCurrWord();
+  const wordDisp = document.getElementById("curr-word");
+  if (word !== null) {
+    wordDisp.innerHTML = `<strong>${word}</strong>`;
+  } else {
+    wordDisp.innerHTML = "";
+  }
 }

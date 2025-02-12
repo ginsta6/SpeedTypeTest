@@ -16,8 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
     handleInput(event.target.value);
   });
 
-  input.addEventListener("keyup", (event) => {
+  document.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
+      event.preventDefault();
       restartTest();
     } else if (event.key === "Escape") {
       resetTest();
@@ -26,6 +27,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("restart-btn").addEventListener("click", restartTest);
   document.getElementById("reset-btn").addEventListener("click", resetTest);
-  document.getElementById("modal-restart-btn").addEventListener("click", restartTest);
-  document.getElementById("modal-reset-btn").addEventListener("click", resetTest);
 });

@@ -26,42 +26,10 @@
       </div>
     </nav>
 
-    <div
-      class="modal fade"
-      id="finishModal"
-      tabindex="-1"
-      aria-labelledby="finishModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="finishModalLabel">Great Work!</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <p>Check out your statistics at the bottom or go to the Results tab!</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="modal-restart-btn" data-bs-dismiss="modal">
-              Restart
-            </button>
-            <button type="button" class="btn btn-primary" id="modal-reset-btn" data-bs-dismiss="modal">
-              Reset
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="container mt-5">
       <div class="card p-4 shadow-sm">
         <h3 class="text-center">Typing Test</h3>
+        <span id="curr-word" class="d-flex justify-content-center"></span>
         <p id="text" class="text-center">
           <span id="correct-txt"></span><span id="wrong-txt"></span><span id="default-txt"></span>
         </p>
@@ -79,34 +47,23 @@
     <div class="container mt-4">
       <div class="card p-4 shadow-sm">
         <h4 class="text-center">Performance Summary</h4>
-        <div class="row text-center">
-          <div class="col-md-6">
-            <canvas id="wpm-chart"></canvas>
-          </div>
-          <div class="col-md-6">
-            <canvas id="pie-chart"></canvas>
+        <div id="performanceSummary" class="collapse show">
+          <p class="text-center mt-3">
+            Typing Speed: <strong><span id="wpm-rating">55 WPM</span></strong>
+          </p>
+          <p class="text-center">
+            Accuracy: <strong><span id="acc-rating">98%</span></strong>
+          </p>
+          <div class="row text-center">
+            <div class="col-md-6">
+              <canvas id="wpm-chart"></canvas>
+            </div>
+            <div class="col-md-6 d-flex">
+              <canvas id="pie-chart"></canvas>
+            </div>
           </div>
         </div>
-        <p class="text-center mt-3">
-          Typing Speed: <strong><span id="wpm-rating">55 WPM</span></strong>
-        </p>
-        <p class="text-center">
-          Accuracy: <strong><span id="acc-rating">98%</span></strong>
-        </p>
       </div>
     </div>
-
-    <footer class="footer mt-5 bg-light">
-      <div class="container">
-        <p>&copy; 2023 TypeTestPro. All rights reserved.</p>
-        <p>
-          <a href="#" class="text-dark me-3">Privacy Policy</a>
-          <a href="#" class="text-dark me-3">Terms of Use</a>
-          <a href="#" class="text-dark">Contact Us</a>
-        </p>
-      </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
