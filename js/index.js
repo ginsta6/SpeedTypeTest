@@ -4,10 +4,15 @@ import {
   startTimer,
   restartTest,
   resetTest,
-  dummyText
+  dummyText,
 } from "./typing.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  const tooltips = document.querySelectorAll(".my-tooltip");
+  tooltips.forEach((t) => {
+    new bootstrap.Tooltip(t, {html: true});
+  });
+
   getTextFromAPI();
 
   const input = document.getElementById("user-input");
@@ -30,9 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("reset-btn").addEventListener("click", resetTest);
 
   document.addEventListener("keydown", (event) => {
-    if (event.altKey){
+    if (event.altKey) {
       dummyText();
     }
-  })
+  });
 });
-

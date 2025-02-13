@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Pacifico&display=swap");
+
 body {
   background-color: #f8f9fa;
 }
@@ -30,4 +32,21 @@ body {
 
 #performanceSummary {
   display: none;
+}
+
+.navbar-brand {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+}
+
+.navbar .text-muted {
+  font-family: "Pacifico", cursive;
+  font-size: 1.25rem;
+}
+
+.tooltip-inner {
+  white-space: nowrap;
+  max-width: none;
+  width: auto;
+  text-align: left;
 }
