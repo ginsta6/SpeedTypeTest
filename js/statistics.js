@@ -200,12 +200,13 @@ function saveMetrics(stats) {
 
 function checkImprovement(currentWPM, currentAccuracy) {
   const metrics = JSON.parse(localStorage.getItem("metrics"));
-  const averageWPM = parseInt(metrics.aveWPM);
-  const averageAcc = parseInt(metrics.aveAcc);
 
-  if (averageWPM === null || averageAcc === null) {
+  if (metrics === null) {
     return "This is your first attempt!";
   }
+
+  const averageWPM = parseInt(metrics.aveWPM);
+  const averageAcc = parseInt(metrics.aveAcc);
 
   console.log(currentWPM);
   console.log(currentAccuracy);

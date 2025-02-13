@@ -16,73 +16,83 @@
   </head>
   <body>
     <nav class="navbar navbar-light bg-white shadow-sm p-3">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="./index.html">TypeTestPro</a>
-        <div>
-          <a href="./index.html" class="text-dark me-3">Test</a>
-          <a href="./results.html" class="text-dark">Results</a>
-        </div>
-      </div>
-    </nav>
-
-    <div class="container d-flex">
-      <div class="container mt-4">
-        <div class="card p-4 shadow-sm">
-          <h4 class="text-center">Key Metrics</h3>
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Average WPM</th>
-                <th>Best WPM</th>
-                <th>Average Accuracy, %</th>
-                <th>Best Accuracy, %</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td id="average-wpm">N/A</td>
-                <td id="best-wpm">N/A</td>
-                <td id="average-acc">N/A</td>
-                <td id="best-acc">N/A</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h4 class="text-center">Results</h4>
+        <div class="container d-flex justify-content-between align-items-center">
           <div>
-            <table id="resultsTable" class="table table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th>No.</th>
-                  <th>Date</th>
-                  <th>WPM</th>
-                  <th>Accuracy, %</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Rows will be populated dynamically -->
-              </tbody>
-            </table>
+            <a class="navbar-brand fw-bold" href="./index.html">KeyDiscipline</a>
+            <span class="text-muted small">Speed is nothing without control.</span>
+          </div>
+          <div>
+            <a href="./index.html" class="text-dark me-3">Test</a>
+            <a href="./results.html" class="text-dark">Results</a>
           </div>
         </div>
-      </div>
-      <div class="container mt-4">
-        <div class="card p-4 shadow-sm">
-          <h4 class="text-center">Performance Summary</h4>
-          <p id="stat-id" class="text-center text-secondary">Select an entry from the results table</p>
-          <div id="performanceSummary" class="collapse">
-            <p class="text-center mt-3">
-              Typing Speed: <strong><span id="wpm-rating">55 WPM</span></strong>
+      </nav>
+
+    <div class="container">
+      <div class="row">
+        <!-- Key Metrics Section -->
+        <div class="col-12 col-md-6 mt-4">
+          <div class="card p-4 shadow-sm" style="max-height: 600px">
+            <h4 class="text-center">Key Metrics</h4>
+            <div>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Average WPM</th>
+                    <th>Best WPM</th>
+                    <th>Average Accuracy, %</th>
+                    <th>Best Accuracy, %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td id="average-wpm">N/A</td>
+                    <td id="best-wpm">N/A</td>
+                    <td id="average-acc">N/A</td>
+                    <td id="best-acc">N/A</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h4 class="text-center">Results</h4>
+            <div class="table-responsive">
+              <table id="resultsTable" class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Date</th>
+                    <th>WPM</th>
+                    <th>Accuracy, %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Rows will be populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Performance Summary Section -->
+        <div class="col-12 col-md-6 mt-4">
+          <div class="card p-4 shadow-sm">
+            <h4 class="text-center">Performance Summary</h4>
+            <p id="stat-id" class="text-center text-secondary">
+              Select an entry from the results table
             </p>
-            <p class="text-center">
-              Accuracy: <strong><span id="acc-rating">98%</span></strong>
-            </p>
-            <div class="row text-center d-flex flex-column justify-content-center">
-              <div>
-                <canvas id="wpm-chart"></canvas>
-              </div>
-              <div>
-                <canvas id="pie-chart"></canvas>
+            <div id="performanceSummary" class="collapse">
+              <p class="text-center mt-3">
+                Typing Speed: <strong><span id="wpm-rating">55 WPM</span></strong> Accuracy:
+                <strong><span id="acc-rating">98%</span></strong>
+              </p>
+              <div class="row text-center">
+                <div class="col-12">
+                  <canvas id="wpm-chart"></canvas>
+                </div>
+                <div class="col-12 mt-3">
+                  <canvas id="pie-chart"></canvas>
+                </div>
               </div>
             </div>
           </div>
