@@ -4,6 +4,7 @@ import {
   startTimer,
   restartTest,
   resetTest,
+  dummyText
 } from "./typing.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,4 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("restart-btn").addEventListener("click", restartTest);
   document.getElementById("reset-btn").addEventListener("click", resetTest);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.altKey){
+      dummyText();
+    }
+  })
 });
+

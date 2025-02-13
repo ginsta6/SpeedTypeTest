@@ -1,7 +1,7 @@
 import { calculateStats } from "./statistics.js";
 
 let testText = "";
-let time = 5;
+let time = 60;
 let timerID;
 let longestCorrect = "";
 let currentMistake = "";
@@ -15,6 +15,11 @@ export function getTextFromAPI() {
       addTextToHTML(data);
     })
     .catch((error) => console.error("Error fetching data:", error));
+}
+
+export function dummyText() {
+  testText = "my name is aldona";
+  addTextToHTML("my name is aldona");
 }
 
 export function handleInput(input) {
@@ -32,7 +37,7 @@ export function handleInput(input) {
   highlightGreen(correct);
   highlightRed(incorrect);
   addTextToHTML(text);
-  underlineCurrWord();
+  displayCurrWord();
   if (correct.length === testText.length) {
     gameEnd();
   }
@@ -98,7 +103,7 @@ function decreaseTimer() {
   timer.innerText = time;
   if (time === 0) {
     gameEnd();
-    time = 5;
+    time = 60;
   }
 }
 
@@ -115,7 +120,7 @@ function stopTimer() {
 
 function resetTimer() {
   stopTimer();
-  time = 5;
+  time = 60;
   document.getElementById("timer").innerText = time;
 }
 
@@ -172,11 +177,11 @@ function getCurrWord() {
   return null; // No word found at the given index
 }
 
-function underlineCurrWord() {
+function displayCurrWord() {
   const word = getCurrWord();
   const wordDisp = document.getElementById("curr-word");
   if (word !== null) {
-    wordDisp.innerHTML = `<strong>${word}</strong>`;
+    wordDisp.innerHTML = `<strong>Current word: <u>${word}</u></strong>`;
   } else {
     wordDisp.innerHTML = "";
   }
