@@ -27,3 +27,7 @@ body {
   pointer-events: none; /* Prevent interaction */
   background-color: #f0f0f0; /* Optional: Gray out */
 }
+
+#performanceSummary {
+  display: none;
+}

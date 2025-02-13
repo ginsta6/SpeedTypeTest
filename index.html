@@ -19,9 +19,8 @@
       <div class="container">
         <a class="navbar-brand fw-bold" href="#">TypeTestPro</a>
         <div>
-          <a href="#" class="text-dark me-3">Home</a>
-          <a href="#" class="text-dark me-3">Test</a>
-          <a href="#" class="text-dark">Results</a>
+          <a href="./index.html" class="text-dark me-3">Test</a>
+          <a href="./results.html" class="text-dark">Results</a>
         </div>
       </div>
     </nav>
@@ -29,7 +28,9 @@
     <div class="container mt-5">
       <div class="card p-4 shadow-sm">
         <h3 class="text-center">Typing Test</h3>
-        <span id="curr-word" class="d-flex justify-content-center"></span>
+        <span id="curr-word" class="d-flex justify-content-center"
+          ><strong>Current word: ___</strong></span
+        >
         <p id="text" class="text-center">
           <span id="correct-txt"></span><span id="wrong-txt"></span><span id="default-txt"></span>
         </p>
@@ -49,17 +50,16 @@
         <h4 class="text-center">Performance Summary</h4>
         <div id="performanceSummary" class="collapse show">
           <p class="text-center mt-3">
-            Typing Speed: <strong><span id="wpm-rating">55 WPM</span></strong>
+            Typing Speed: <strong><span id="wpm-rating"></span></strong>
+            Accuracy: <strong><span id="acc-rating"></span></strong>
           </p>
-          <p class="text-center">
-            Accuracy: <strong><span id="acc-rating">98%</span></strong>
-          </p>
-          <div class="row text-center">
+          <p id="message" class="text-center"></p>
+          <div class="row justify-content-center">
             <div class="col-md-6">
-              <canvas id="wpm-chart"></canvas>
+              <canvas id="wpm-chart" width="600" height="300"></canvas>
             </div>
-            <div class="col-md-6 d-flex">
-              <canvas id="pie-chart"></canvas>
+            <div class="col-md-4">
+              <canvas id="pie-chart" width="200" height="200"></canvas>
             </div>
           </div>
         </div>
